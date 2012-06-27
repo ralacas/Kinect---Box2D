@@ -1,0 +1,17 @@
+//THE PATH TO THE ROOT OF OUR OF PATH RELATIVE TO THIS PROJECT.
+//THIS NEEDS TO BE DEFINED BEFORE CoreOF.xcconfig IS INCLUDED
+OF_PATH = ../../..
+
+//THIS HAS ALL THE HEADER AND LIBS FOR OF CORE
+#include "../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig"
+
+OPENCV_LIB = $(OF_PATH)/addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a
+OPENCV_HEADER = $(OF_PATH)/addons/ofxOpenCv/src $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include $(OF_PATH)/addons/ofxOpenCv/libs/opencv/include/opencv/
+
+KINECT_LIB = $(OF_PATH)/addons/ofxKinect/libs/libusb/osx/include
+KINECT_LIB2 = $(OF_PATH)/addons/ofxKinect/libs/libusb/osx/include/libusb-1.0
+KINECT_PRE = $(OF_PATH)/addons/ofxKinect/libs/libusb/osx/libs/usb-1.0.a
+
+
+OTHER_LDFLAGS = $(OF_CORE_LIBS)  $(OPENCV_LIB) $(KINECT_PRE)
+HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) $(OPENCV_HEADER) $(KINECT_LIB) $(KINECT_LIB2)
