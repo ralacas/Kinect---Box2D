@@ -30,19 +30,27 @@ void testApp::update(){
     grayImage.setFromPixels(kinect.getDepthPixels(),kinect.width,kinect.height);
     grayImage.mirror(false,true);    
     contourFinder.findContours(grayImage, 10, (kinect.width*kinect.height), 20, true);
-    
+    analisis.simplify(contourFinder.blobs[0].pts, simple, 1.0);
+    /*
     if(contourFinder.nBlobs > 0){
-        analisis.simplify(contourFinder.blobs[0].pts, simple, 1.0);
         ofPoint p;
-        lineStrip.setup(fisica.getWorld());
-        lineStrip.clear();
+        
+        //Primer recorrido para llenar el vector de polyline con los puntos de simple
         for(int i=0; i<simple.size(); i++) {
             p.x = simple[i].x;
             p.y = simple[i].y;
-            lineStrip.lineTo(p.x,p.y,0);
+            //lines.back().addVertex(p.x, p.y);
         }
+        
+        //Segundo recorrido para llenar el vector de polygono con las lineas de polyline
+        for(int i=0;i<lines.back().size();i++){
+            polyLines.addVertex(lines.back()[i]);
+        }
+        polyLines.create(fisica.getWorld());
+         
     }
     
+        
     //Crear los rectangulos
     while(numRect <=100){
         ofxBox2dRect rectangle;
@@ -52,7 +60,7 @@ void testApp::update(){
         numRect++;
     }
     
-    
+    */
     
     //Actualizar la fisica
     fisica.update();
@@ -78,7 +86,10 @@ void testApp::draw(){
         ofEndShape(true);
         ofPopMatrix();
     }
-    lineStrip.draw();
+    //polyLines.draw();
+    //for(int i=0;i<simple.size();i++){
+      //  ofCircle(simple[i].x, simple[i].y, 1);
+    //}
 }
 //--------------------------------------------------------------
 void testApp::exit(){

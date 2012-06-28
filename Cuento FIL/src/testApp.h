@@ -36,12 +36,14 @@ public:
     
     ofxCvContourFinder contourFinder;
     ofxCvContourSimplify analisis;
-
-    vector<ofPoint>     simple;
     
+    //Box2D
+    vector <ofVec3f> simple;
     ofxBox2d fisica;
-    ofxBox2dPolygon lineStrip;
+    vector <ofPolyline> lines;
+    ofxBox2dPolygon polyLines;
     
+    //Rectangulos
     vector <ofxBox2dRect> rects;
     
     int numRect;
